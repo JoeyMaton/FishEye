@@ -69,4 +69,10 @@ h1 {
     width: 200px;
     object-fit: cover;
     border-radius: 100px;
+    cursor: pointer;
+}
+
+.photographer_section article img:hover {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
 }

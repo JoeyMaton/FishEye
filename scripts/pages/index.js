@@ -30,6 +30,7 @@
             }
             const data = await response.json();
             return data;
+            
 
         // et bien retourner le tableau photographers seulement une fois récupéré
         return ({
@@ -43,6 +44,12 @@
             const photographerModel = photographerTemplate(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
+            console.log(photographer);
+            var photograph1 = document.getElementById(photographer.id);
+            photograph1.addEventListener("click", function() {
+                // Redirection vers une URL spécifique, par exemple :
+                window.location.href = `http://127.0.0.1:5500/FishEye/photographer.html?id=${photographer.id}`
+            });
         });
     }
 

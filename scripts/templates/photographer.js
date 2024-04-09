@@ -7,7 +7,6 @@ function photographerTemplate(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
-        const id = document.createElement( 'id' );
         const img = document.createElement( 'img' );
         const h2 = document.createElement( 'h2' );
         const h3 = document.createElement( 'h3' );
@@ -15,6 +14,7 @@ function photographerTemplate(data) {
         const para2 = document.createElement( 'span' )
         
         img.setAttribute("src", picture, altname)
+        img.id = id;
         h2.textContent = name;
         h3.textContent = city + ", " + country;
         para1.textContent = tagline;
