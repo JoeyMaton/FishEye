@@ -1,20 +1,20 @@
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const photographerId = urlParams.get("id");
+
 //Mettre le code JavaScript lié à la page photographer.html
 async function inits() {
-  const queryString = window.location.search;
-  console.log(queryString);
-  const urlParams = new URLSearchParams(queryString);
-  const id = urlParams.get("id");
-  console.log(id);
-
-  const response = await fetch(
-    "http://127.0.0.1:5500/FishEye/data/photographers.json"
-  );
+  const response = await fetch("/FishEye/data/photographers.json");
   if (!response.ok) {
     throw new Error("Echec de la récupération des données.");
   }
   const data = await response.json();
-  const photographer = data.photographers.find((element) => element === id);
-  console.log(photographer);
+  const photographer = data.photographers.find(
+    (element) => element.id == photographerId
+  );
+  const p = photographerTemplate(photographer);
+  const result = p.getUserCardDOM();
 }
 inits();
 
@@ -49,59 +49,44 @@ function photographerTemplate(data) {
   return { name, picture, getUserCardDOM };
 }
 
-async function getPhotographers() {
-  const response = await fetch(
-    "http://127.0.0.1:5500/FishEye/data/photographers.json"
-  );
+async function displayPhotographer(photographers) {
+  const photographersSection = document.querySelector(".photograph-header");
+
+  photographers.forEach((photographer) => {
+    const photographerModel = photographerTemplate(photographer);
+    const userCardDOM = photographerModel.getUserCardDOM();
+    photographersSection.appendChild(userCardDOM);
+    console.log(photographer);
+  });
+}
+
+async function getMedia() {
+  const response = await fetch("/FishEye/data/photographers.json");
   if (!response.ok) {
     throw new Error("Echec de la récupération des données.");
   }
   const data = await response.json();
-  return data;
+  const photographerMedia = data.media.filter(
+    (element) => element.photographerId == photographerId
+  );
+  return photographerMedia;
 }
 
-async function displayData(photographers) {
-    const photographersSection = document.querySelector(".photograph-header");
-  
-    photographers.forEach((photographer) => {
-      const photographerModel = photographerTemplate(photographer);
-      const userCardDOM = photographerModel.getUserCardDOM();
-      photographersSection.appendChild(userCardDOM);
-      console.log(photographer);
-    });
-  }
+async function displayMedia(medias) {
+  const mediaSection = document.querySelector(".media_section");
+  console.log(medias);
+  medias.forEach((media) => {
+    const mediaModel = mediaTemplate(media);
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    mediaSection.appendChild(mediaCardDOM);
+    console.log(media);
+  });
+}
 
+async function init() {
+  // Récupère les datas des photographes
+  const medias = await getMedia();
+  displayMedia(medias);
+}
 
-
-  async function getMedia() {
-    const response = await fetch(
-      "http://127.0.0.1:5500/FishEye/data/photographers.json"
-    );
-    if (!response.ok) {
-      throw new Error("Echec de la récupération des données.");
-    }
-    const data = await response.json();
-    return data;
-    const result = data.media.filter((element) => element === photographerId);
-    console.log(result);
-  }
-
-
-  async function displayData(medias) {
-    const mediaSection = document.querySelector(".media_section");
-  
-    medias.forEach((media) => {
-      const mediaModel = mediaTemplate(media);
-      const mediaCardDOM = mediaModel.getMediaCardDOM();
-      mediaSection.appendChild(mediaCardDOM);
-      console.log(media);
-    });
-  }
-
-  async function init() {
-    // Récupère les datas des photographes
-    const { medias } = await getMedia();
-    displayData(medias);
-  }
-  
-  init();
+init();
