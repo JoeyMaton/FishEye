@@ -1,9 +1,7 @@
-
-    
-    async function getPhotographers() {
-        // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-        // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-        /* let photographers = [
+async function getPhotographers() {
+  // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet,
+  // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
+  /* let photographers = [
             {
                 "name": "Ma data test",
                 "id": 1,
@@ -23,41 +21,42 @@
                 "portrait": "account.png"
             },
         ]*/
-            
-            const response = await fetch("http://127.0.0.1:5500/FishEye/data/photographers.json");
-            if(!response.ok) {
-                throw new Error ('Echec de la récupération des données.');
-            }
-            const data = await response.json();
-            return data;
-            
 
-        // et bien retourner le tableau photographers seulement une fois récupéré
-        return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
-    }
+  const response = await fetch(
+    "http://127.0.0.1:5500/FishEye/data/photographers.json"
+  );
+  if (!response.ok) {
+    throw new Error("Echec de la récupération des données.");
+  }
+  const data = await response.json();
+  return data;
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+  // et bien retourner le tableau photographers seulement une fois récupéré
+  return {
+    photographers: [...photographers, ...photographers, ...photographers],
+  };
+}
 
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerTemplate(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-            console.log(photographer);
-            var photograph1 = document.getElementById(photographer.id);
-            photograph1.addEventListener("click", function() {
-                // Redirection vers une URL spécifique, par exemple :
-                window.location.href = `http://127.0.0.1:5500/FishEye/photographer.html?id=${photographer.id}`
-            });
-        });
-    }
+async function displayData(photographers) {
+  const photographersSection = document.querySelector(".photographer_section");
 
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
-    }
-    
-    init();
-    
+  photographers.forEach((photographer) => {
+    const photographerModel = photographerTemplate(photographer);
+    const userCardDOM = photographerModel.getUserCardDOM();
+    photographersSection.appendChild(userCardDOM);
+    console.log(photographer);
+    var photograph1 = document.getElementById(photographer.id);
+    photograph1.addEventListener("click", function () {
+      // Redirection vers une URL spécifique, par exemple :
+      window.location.href = `http://127.0.0.1:5500/FishEye/photographer.html?id=${photographer.id}`;
+    });
+  });
+}
+
+async function init() {
+  // Récupère les datas des photographes
+  const { photographers } = await getPhotographers();
+  displayData(photographers);
+}
+
+init();
