@@ -8,6 +8,15 @@
     margin: 0 100px;
 }
 
+.photograph-header article {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;

@@ -4,7 +4,7 @@ const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get("id");
 
 //Mettre le code JavaScript lié à la page photographer.html
-async function inits() {
+async function getPhotograph() {
   const response = await fetch("/FishEye/data/photographers.json");
   if (!response.ok) {
     throw new Error("Echec de la récupération des données.");
@@ -15,8 +15,9 @@ async function inits() {
   );
   const p = photographerTemplate(photographer);
   const result = p.getUserCardDOM();
+  return result;
 }
-inits();
+
 
 function photographerTemplate(data) {
   const { name, portrait, city, country, tagline, price, altname, id } = data;
@@ -56,9 +57,9 @@ async function displayPhotographer(photographers) {
     const photographerModel = photographerTemplate(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
-    console.log(photographer);
   });
 }
+
 
 async function getMedia() {
   const response = await fetch("/FishEye/data/photographers.json");
@@ -74,17 +75,16 @@ async function getMedia() {
 
 async function displayMedia(medias) {
   const mediaSection = document.querySelector(".media_section");
-  console.log(medias);
+
   medias.forEach((media) => {
     const mediaModel = mediaTemplate(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
-    console.log(media);
   });
 }
 
 async function init() {
-  // Récupère les datas des photographes
+  // Récupère les medias des photographes
   const medias = await getMedia();
   displayMedia(medias);
 }
