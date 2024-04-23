@@ -13,53 +13,46 @@ async function getPhotograph() {
   const photographer = data.photographers.find(
     (element) => element.id == photographerId
   );
-  const p = photographerTemplate(photographer);
+  const p = photographTemplate(photographer);
   const result = p.getUserCardDOM();
   return result;
 }
 
 
-function photographerTemplate(data) {
+function photographTemplate(data) {
   const { name, portrait, city, country, tagline, price, altname, id } = data;
 
   const picture = `assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
     const article = document.createElement("article");
+    const div = document.createElement("div");
     const img = document.createElement("img");
     const h2 = document.createElement("h2");
     const h3 = document.createElement("h3");
     const para1 = document.createElement("p");
-    const para2 = document.createElement("span");
+    const button = document.querySelector(".contact_button");
+    
 
     img.setAttribute("src", picture, altname);
     img.id = id;
     h2.textContent = name;
     h3.textContent = city + ", " + country;
     para1.textContent = tagline;
-    para2.textContent = price + "€/jour";
 
+   
+    div.appendChild(h2);
+    div.appendChild(h3);
+    div.appendChild(para1); 
+    article.appendChild(div);
+    article.appendChild(button);
     article.appendChild(img);
-    article.appendChild(h2);
-    article.appendChild(h3);
-    article.appendChild(para1);
-    article.appendChild(para2);
+    
 
     return article;
   }
   return { name, picture, getUserCardDOM };
 }
-
-async function displayPhotographer(photographers) {
-  const photographersSection = document.querySelector(".photograph-header");
-
-  photographers.forEach((photographer) => {
-    const photographerModel = photographerTemplate(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
-  });
-}
-
 
 async function getMedia() {
   const response = await fetch("/FishEye/data/photographers.json");
@@ -84,7 +77,11 @@ async function displayMedia(medias) {
 }
 
 async function init() {
-  // Récupère les medias des photographes
+  // Récupère les données su photographe et ces médias
+  const section = document.querySelector(".photograph-header");
+  const article = await getPhotograph();
+  section.appendChild(article);
+
   const medias = await getMedia();
   displayMedia(medias);
 }
