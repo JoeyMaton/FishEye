@@ -7,6 +7,7 @@ async function displayData(photographers) {
     photographersSection.appendChild(userCardDOM);
     console.log(photographer);
     var photograph1 = document.getElementById(photographer.id);
+    console.log(photograph1);
     photograph1.addEventListener("click", function () {
       // Redirection vers une URL spécifique, par exemple :
       window.location.href = `http://127.0.0.1:5500/FishEye/photographer.html?id=${photographer.id}`;

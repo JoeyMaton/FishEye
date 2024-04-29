@@ -73,6 +73,10 @@ async function displayMedia(medias) {
     const mediaModel = mediaTemplate(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
+    // launch modal event
+    var mediaClick = document.getElementById(media.id);
+    console.log(mediaClick);
+    mediaClick.addEventListener("click", launchModal);
   });
 }
 

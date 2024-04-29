@@ -1,35 +1,71 @@
 function mediaTemplate(media) {
-  const { id, photographerId, title, image, video, likes, date, price } = media;
+  let { id, photographerId, title, image, video, likes, date, price } = media;
 
   let mediaPath = null;
+  let isVideo = null;
   if (image) {
     mediaPath = `assets/media/${image}`;
+    isVideo = false;
   } else {
     mediaPath = `assets/media/${video}`;
+    isVideo = true;
   }
 
-  
   function getMediaCardDOM() {
     const article = document.createElement("article");
-    const div = document.createElement("div");
+    const divMain = document.createElement("div");
+    const divTitle =  document.createElement("div");
+    const divLikes = document.createElement("div");
     const img = document.createElement("img");
     const video = document.createElement("video");
+    const source = document.createElement("source");
     const h2 = document.createElement("h2");
-    const span = document.createElement("h2");
+    const span = document.createElement("span");
+    const like = document.createElement("i");
+    const unLikes = document.createElement("i");
 
-    img.setAttribute("src", mediaPath);
-    img.id = id;
+    if (isVideo) {
+      video.setAttribute("width", "500");
+      video.setAttribute("height", "500");
+      // video.setAttribute("controls", "");
+      source.setAttribute("src", mediaPath);
+      source.setAttribute("type", "video/mp4");
+      video.id = id;
+      video.appendChild(source);
+      article.appendChild(video);
+    } else {
+      img.setAttribute("src", mediaPath);
+      img.id = id;
+      article.appendChild(img);
+    }
+
     h2.textContent = title;
-    span.innerHTML = '<i class="fa-solid fa-heart"></i>';
+    unLikes.className = "fa-regular fa-heart";
+    like.className = "fa-solid fa-heart";
+
+    
+    like.onclick = function () {
+      unLikes.style.display = "flex";
+      like.style.display = "none";
+      likes -= 1;
+      span.textContent = likes;
+    };
+    unLikes.onclick = function () {
+      like.style.display = "flex";
+      unLikes.style.display = "none";
+      likes += 1;
+      span.textContent = likes;
+    };
+
     span.textContent = likes;
 
-
-
-    article.appendChild(img);
     article.appendChild(div);
-    div.appendChild(h2);
-    div.appendChild(span);
-    
+    divMain.appendChild(divTitle);
+    divTitle.appendChild(h2);
+    divMain.appendChild(divLikes);
+    divLikes.appendChild(span);
+    divLikes.appendChild(unLikes);
+    divLikes.appendChild(like);
 
     return article;
   }
