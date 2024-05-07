@@ -2,6 +2,7 @@ const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get("id");
+let INDEX = 0;
 
 //Mettre le code JavaScript lié à la page photographer.html
 async function getPhotograph() {
@@ -69,14 +70,18 @@ async function getMedia() {
 async function displayMedia(medias) {
   const mediaSection = document.querySelector(".media_section");
 
-  medias.forEach((media) => {
+  medias.forEach((media, mediaIndex) => {
     const mediaModel = mediaTemplate(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
+    
     // launch modal event
     var mediaClick = document.getElementById(media.id);
-    console.log(mediaClick);
-    mediaClick.addEventListener("click", launchModal);
+    mediaClick.addEventListener("click", () => {
+      INDEX = mediaIndex;
+      launchModal();
+      console.log(INDEX);
+    });
   });
 }
 

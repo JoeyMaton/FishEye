@@ -59,7 +59,7 @@ function mediaTemplate(media) {
 
     span.textContent = likes;
 
-    article.appendChild(div);
+    article.appendChild(divMain);
     divMain.appendChild(divTitle);
     divTitle.appendChild(h2);
     divMain.appendChild(divLikes);
