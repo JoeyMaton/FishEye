@@ -1,6 +1,6 @@
 async function getPhotographers() {
     const response = await fetch(
-      "/FishEye/data/photographers.json"
+      "../../data/photographers.json"
     );
     if (!response.ok) {
       throw new Error("Echec de la récupération des données.");

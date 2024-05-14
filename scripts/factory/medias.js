@@ -14,7 +14,7 @@ function mediaTemplate(media) {
   function getMediaCardDOM() {
     const article = document.createElement("article");
     const divMain = document.createElement("div");
-    const divTitle =  document.createElement("div");
+    const divTitle = document.createElement("div");
     const divLikes = document.createElement("div");
     const img = document.createElement("img");
     const video = document.createElement("video");
@@ -43,7 +43,6 @@ function mediaTemplate(media) {
     unLikes.className = "fa-regular fa-heart";
     like.className = "fa-solid fa-heart";
 
-    
     like.onclick = function () {
       unLikes.style.display = "flex";
       like.style.display = "none";
@@ -66,8 +65,30 @@ function mediaTemplate(media) {
     divLikes.appendChild(span);
     divLikes.appendChild(unLikes);
     divLikes.appendChild(like);
-
+    
+    
     return article;
   }
   return { title, mediaPath, getMediaCardDOM };
+}
+
+function globalLikes(medias, price) {
+  const infoPhotographer = document.querySelector(".otherInfo");
+  const likeInfo = document.createElement("span");
+  const priceInfo = document.createElement("p");
+  const like = document.createElement("i");
+  
+
+  let globalLikes = 0;
+  medias.forEach((media) => {
+    globalLikes = globalLikes + media.likes;
+  });
+
+  like.className = "fa-solid fa-heart";
+  likeInfo.textContent = globalLikes;
+  priceInfo.textContent = price + "€ / jour";
+
+  likeInfo.appendChild(like);
+  infoPhotographer.appendChild(likeInfo);
+  infoPhotographer.appendChild(priceInfo);
 }

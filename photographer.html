@@ -17,28 +17,32 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div class="media_section"></div>
-
+      <div class="otherInfo"></div>
       
       <div class="bground">
         <div class="content">
           <span class="close"></span>
           <div class="modal-body"></div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+    <div class="bgroundContact">
+      <div class="content_contact">
+        <div id="contact_modal">
+          <div class="modal">
+            <header>
+              <h2>Contactez-moi</h2>
+              <img src="assets/icons/close.svg" onclick="closeModal()" />
+            </header>
+            <form>
+              <div>
+                <label>Prénom</label>
+                <input />
+              </div>
+              <button class="contact_button">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/factory/medias.js"></script>
     <script src="scripts/utils/dataPhotographer.js"></script>

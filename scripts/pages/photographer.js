@@ -2,11 +2,12 @@ const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get("id");
-let INDEX = 0;
+let photographerPrice = 0;
+
 
 //Mettre le code JavaScript lié à la page photographer.html
 async function getPhotograph() {
-  const response = await fetch("/FishEye/data/photographers.json");
+  const response = await fetch("../../data/photographers.json");
   if (!response.ok) {
     throw new Error("Echec de la récupération des données.");
   }
@@ -19,10 +20,10 @@ async function getPhotograph() {
   return result;
 }
 
-
 function photographTemplate(data) {
   const { name, portrait, city, country, tagline, price, altname, id } = data;
 
+  photographerPrice = price;
   const picture = `assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
@@ -33,18 +34,17 @@ function photographTemplate(data) {
     const h3 = document.createElement("h3");
     const para1 = document.createElement("p");
     const button = document.querySelector(".contact_button");
-    
 
     img.setAttribute("src", picture, altname);
     img.id = id;
     h2.textContent = name;
     h3.textContent = city + ", " + country;
     para1.textContent = tagline;
+    
 
-   
     div.appendChild(h2);
     div.appendChild(h3);
-    div.appendChild(para1); 
+    div.appendChild(para1);
     article.appendChild(div);
     article.appendChild(button);
     article.appendChild(img);
@@ -56,7 +56,7 @@ function photographTemplate(data) {
 }
 
 async function getMedia() {
-  const response = await fetch("/FishEye/data/photographers.json");
+  const response = await fetch("../../data/photographers.json");
   if (!response.ok) {
     throw new Error("Echec de la récupération des données.");
   }
@@ -69,21 +69,13 @@ async function getMedia() {
 
 async function displayMedia(medias) {
   const mediaSection = document.querySelector(".media_section");
-
-  medias.forEach((media, mediaIndex) => {
+  medias.forEach((media) => {
     const mediaModel = mediaTemplate(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
-    
-    // launch modal event
-    var mediaClick = document.getElementById(media.id);
-    mediaClick.addEventListener("click", () => {
-      INDEX = mediaIndex;
-      launchModal();
-      console.log(INDEX);
-    });
   });
 }
+
 
 async function init() {
   // Récupère les données su photographe et ces médias
@@ -93,6 +85,7 @@ async function init() {
 
   const medias = await getMedia();
   displayMedia(medias);
+  globalLikes(medias, photographerPrice);
 }
 
 init();

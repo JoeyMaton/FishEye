@@ -10,7 +10,7 @@ async function displayData(photographers) {
     console.log(photograph1);
     photograph1.addEventListener("click", function () {
       // Redirection vers une URL spécifique, par exemple :
-      window.location.href = `http://127.0.0.1:5500/FishEye/photographer.html?id=${photographer.id}`;
+      window.location.href = `/photographer.html?id=${photographer.id}`;
     });
   });
 }
