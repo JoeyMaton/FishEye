@@ -110,8 +110,6 @@
     cursor: pointer;
 }
 
-
-
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -123,6 +121,27 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+#title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-control {
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.text-control {
+    height: 300px;
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .bgroundContact {
@@ -142,6 +161,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: 2500px;
     height: 100%;
 }
 
@@ -203,6 +223,63 @@ form input {
     border-radius: 5px;
 }
 
+form textarea {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+}
+
+.filter-menu {
+    width: 20%;
+    margin: 70px 0 0 150px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.filter-menu span {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.menu-dropdown {
+    background: #901c1c;
+    width: 45%;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-dropdown:hover {
+    background: #bb2d3b;
+    transition: 0.2s ease-in-out;
+}
+
+.dropdown {
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    cursor: pointer;
+}
+
+.dropdown span {
+    font-size: 22px;
+}
+
+.dropdown i {
+    font-size: 24px;
+    transform: rotate(180deg);
+}
+
+
 .media_section {
     display: flex;
     justify-content: center;
@@ -242,7 +319,46 @@ form input {
     margin: 15px auto;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
+
+.prev {
+    width: 60px;
+    height: 60px;
+    font-size: 60px;
+    font-weight: 100;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 150px;
+    color: #901c1c;
+}
+
+.prev:hover{
+    filter: brightness(2);
+}
+
+.next {
+    width: 60px;
+    height: 60px;
+    font-size: 60px;
+    font-weight: 100;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 150px;
+    color: #901c1c;
+}
+
+.next:hover{
+    filter: brightness(2);
+}
+
+
 
 .modal-body img {
   max-width: 100vw;

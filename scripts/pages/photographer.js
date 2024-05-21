@@ -34,14 +34,17 @@ function photographTemplate(data) {
     const h3 = document.createElement("h3");
     const para1 = document.createElement("p");
     const button = document.querySelector(".contact_button");
+    const title = document.getElementById("title");
+    const nameContact = document.createElement("h2");
 
     img.setAttribute("src", picture, altname);
     img.id = id;
     h2.textContent = name;
     h3.textContent = city + ", " + country;
     para1.textContent = tagline;
+    nameContact.textContent = name;
     
-
+    title.appendChild(nameContact);
     div.appendChild(h2);
     div.appendChild(h3);
     div.appendChild(para1);
@@ -85,6 +88,8 @@ async function init() {
 
   const medias = await getMedia();
   displayMedia(medias);
+  displayMediaModal(medias);
+  displayModalInMedia(medias);
   globalLikes(medias, photographerPrice);
 }
 
