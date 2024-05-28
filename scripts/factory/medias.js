@@ -43,18 +43,23 @@ function mediaTemplate(media) {
     unLikes.className = "fa-regular fa-heart";
     like.className = "fa-solid fa-heart";
 
-    like.onclick = function () {
+    like.addEventListener("click", () => {
+      const totalLikes = document.querySelector(".totalLikes");
       unLikes.style.display = "flex";
       like.style.display = "none";
       likes -= 1;
       span.textContent = likes;
-    };
-    unLikes.onclick = function () {
+      totalLikes.innerText = parseInt(totalLikes.innerText) - 1;
+    });
+    unLikes.addEventListener("click", () => {
+      const totalLikes = document.querySelector(".totalLikes");
       like.style.display = "flex";
       unLikes.style.display = "none";
       likes += 1;
       span.textContent = likes;
-    };
+      console.log(totalLikes);
+      totalLikes.innerText = parseInt(totalLikes.innerText) + 1;
+    });
 
     span.textContent = likes;
 
@@ -74,9 +79,11 @@ function mediaTemplate(media) {
 
 function globalLikes(medias, price) {
   const infoPhotographer = document.querySelector(".otherInfo");
-  const likeInfo = document.createElement("span");
+  const info = document.createElement("div");
+  const totalLikes = document.createElement("span");
   const priceInfo = document.createElement("p");
-  const like = document.createElement("i");
+  const heart = document.createElement("i");
+  const divHeart = document.createElement("div");
   
 
   let globalLikes = 0;
@@ -84,11 +91,15 @@ function globalLikes(medias, price) {
     globalLikes = globalLikes + media.likes;
   });
 
-  like.className = "fa-solid fa-heart";
-  likeInfo.textContent = globalLikes;
+  info.className = "info";
+  heart.className = "fa-solid fa-heart";
+  totalLikes.textContent = globalLikes;
+  totalLikes.className = "totalLikes";
   priceInfo.textContent = price + "€ / jour";
 
-  likeInfo.appendChild(like);
-  infoPhotographer.appendChild(likeInfo);
+  info.appendChild(totalLikes)
+  info.appendChild(divHeart);
+  divHeart.appendChild(heart);
+  infoPhotographer.appendChild(info);
   infoPhotographer.appendChild(priceInfo);
 }

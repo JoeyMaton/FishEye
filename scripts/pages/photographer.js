@@ -70,12 +70,46 @@ async function getMedia() {
   return photographerMedia;
 }
 
+function changeOrder() {
+  const popularity = document.getElementById("popularity");
+  const date = document.getElementById("date");
+  const title = document.getElementById("titles");
+
+  popularity.addEventListener("click", async () => {
+    const medias = await getMedia();
+    const newMediasOrder = medias.sort((a,b) => {
+      return b.likes - a.likes;
+    });
+    displayMedia(newMediasOrder);
+    displayModalInMedia(newMediasOrder);
+  });
+
+  date.addEventListener("click", async () => {
+    const medias = await getMedia();
+    const newMediasOrder = medias.sort((a,b) => {
+      return a.date.localeCompare(b.date);
+    });
+    displayMedia(newMediasOrder);
+  });
+
+  title.addEventListener("click", async () => {
+    const medias = await getMedia();
+    const newMediasOrder = medias.sort((a,b) => {
+      return a.title.localeCompare(b.title);
+    });
+    displayMedia(newMediasOrder);
+  });
+
+}
+
 async function displayMedia(medias) {
   const mediaSection = document.querySelector(".media_section");
+  mediaSection.innerHTML = "";
   medias.forEach((media) => {
     const mediaModel = mediaTemplate(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
+    console.log(medias);
   });
 }
 
@@ -88,9 +122,9 @@ async function init() {
 
   const medias = await getMedia();
   displayMedia(medias);
-  displayMediaModal(medias);
   displayModalInMedia(medias);
   globalLikes(medias, photographerPrice);
+  changeOrder();
 }
 
 init();

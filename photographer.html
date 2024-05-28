@@ -16,13 +16,18 @@
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
-      <div class="filter-menu">
+      <div class="dropdown-content">
         <span id="sort-title">Trier par</span>
-        <div class="menu-dropdown">
-          <button class="dropdown">
-            <span>Popularité</span>
-            <i class="fa-solid fa-chevron-down"></i>
-          </button>
+        <div class="dropdown">
+          <div class="select">
+            <span class="selected">Popularité</span>
+            <div class="caret"></div>
+          </div>
+          <ul class="menu">
+            <li id="popularity" class="active">Popularité</li>
+            <li id="date">Date</li>
+            <li id="titles">Titre</li>
+          </ul>
         </div>
       </div>
       <div class="media_section"></div>
@@ -30,6 +35,8 @@
       
       <div class="bground">
         <div class="content">
+          <div class="prev"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="next"><i class="fa-solid fa-chevron-right"></i></div>
           <span class="close"></span>
           <div class="modal-body"></div>
     </main>
@@ -65,6 +72,7 @@
       </div>
     </div>
     <script src="scripts/pages/photographer.js"></script>
+    <script src="scripts/utils/dropdown.js"></script>
     <script src="scripts/factory/medias.js"></script>
     <script src="scripts/utils/dataPhotographer.js"></script>
     <script src="scripts/templates/photographer.js"></script>

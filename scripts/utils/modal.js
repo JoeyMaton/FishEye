@@ -7,12 +7,6 @@ function displayMediaModal(media) {
   mediaSection.innerHTML = "";
   const imgElement = document.createElement("img");
   const videoElement = document.createElement("video");
-  const previous = document.createElement("div");
-  const next = document.createElement("div");
-
-  previous.className = "prev";
-  previous.innerHTML = "<";
-  mediaSection.appendChild(previous); 
 
   if (media.image) {
     imgElement.src = `assets/media/${media.image}`;
@@ -22,17 +16,26 @@ function displayMediaModal(media) {
     videoElement.setAttribute("controls", "");
     mediaSection.appendChild(videoElement);
   }
-
-  next.className = "next";
-  next.innerHTML = ">";
-  mediaSection.appendChild(next); 
 }
 
 function displayModalInMedia(medias) {
+  const prevButton = document.querySelector(".prev");
+  prevButton.addEventListener("click", () => {
+    if(INDEX < 0) {
+     INDEX = medias[INDEX].length - 1;
+      displayMediaModal(medias[INDEX]);
+    }
+    INDEX = INDEX - 1;
+    displayMediaModal(medias[INDEX]);
+    console.log(medias, INDEX);
+  });
+
+
   const nextButton = document.querySelector(".next");
   nextButton.addEventListener("click", () => {
     INDEX = INDEX + 1;
     displayMediaModal(medias[INDEX]);
+    console.log(medias, INDEX);
   });
 
   medias.forEach((media, mediaIndex) => {
