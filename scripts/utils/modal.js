@@ -33,6 +33,10 @@ function displayModalInMedia(medias) {
 
   const nextButton = document.querySelector(".next");
   nextButton.addEventListener("click", () => {
+    if(INDEX > medias[INDEX].length) {
+      INDEX = 0;
+       displayMediaModal(medias[INDEX]);
+     }
     INDEX = INDEX + 1;
     displayMediaModal(medias[INDEX]);
     console.log(medias, INDEX);

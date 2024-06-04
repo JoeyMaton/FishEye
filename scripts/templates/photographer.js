@@ -13,10 +13,13 @@ function photographerTemplate(data) {
 
     img.setAttribute("src", picture, altname);
     img.id = id;
+    img.href = "/photographer.html?id=${photographer.id}";
+    img.ariaLabel = name;
     h2.textContent = name;
     h3.textContent = city + ", " + country;
     para1.textContent = tagline;
     para2.textContent = price + "€/jour";
+
 
     article.appendChild(img);
     article.appendChild(h2);
