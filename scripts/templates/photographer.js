@@ -6,6 +6,7 @@ function photographerTemplate(data) {
   function getUserCardDOM() {
     const article = document.createElement("article");
     const img = document.createElement("img");
+    const a = document.createElement("a");
     const h2 = document.createElement("h2");
     const h3 = document.createElement("h3");
     const para1 = document.createElement("p");
@@ -13,14 +14,14 @@ function photographerTemplate(data) {
 
     img.setAttribute("src", picture, altname);
     img.id = id;
-    img.href = "/photographer.html?id=${photographer.id}";
+    a.href = `/photographer.html?id=${id}`;
     img.ariaLabel = name;
     h2.textContent = name;
     h3.textContent = city + ", " + country;
     para1.textContent = tagline;
     para2.textContent = price + "€/jour";
 
-
+    article.appendChild(a);
     article.appendChild(img);
     article.appendChild(h2);
     article.appendChild(h3);

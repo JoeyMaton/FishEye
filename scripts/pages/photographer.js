@@ -44,6 +44,8 @@ function photographTemplate(data) {
     para1.textContent = tagline;
     nameContact.textContent = name;
     
+    
+    
     title.appendChild(nameContact);
     div.appendChild(h2);
     div.appendChild(h3);
@@ -81,7 +83,7 @@ function changeOrder() {
       return b.likes - a.likes;
     });
     displayMedia(newMediasOrder);
-    displayModalInMedia(newMediasOrder);
+    displayMediaModal(newMediasOrder);
   });
 
   date.addEventListener("click", async () => {

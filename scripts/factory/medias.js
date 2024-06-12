@@ -18,6 +18,7 @@ function mediaTemplate(media) {
     const divLikes = document.createElement("div");
     const img = document.createElement("img");
     const video = document.createElement("video");
+    const a = document.createElement("a");
     const source = document.createElement("source");
     const h2 = document.createElement("h2");
     const span = document.createElement("span");
@@ -31,11 +32,15 @@ function mediaTemplate(media) {
       source.setAttribute("src", mediaPath);
       source.setAttribute("type", "video/mp4");
       video.id = id;
+      a.href = "";
+      video.appendChild(a);
       video.appendChild(source);
       article.appendChild(video);
     } else {
       img.setAttribute("src", mediaPath);
       img.id = id;
+      a.href = "";
+      article.appendChild(a);
       article.appendChild(img);
     }
 
@@ -63,6 +68,7 @@ function mediaTemplate(media) {
 
     span.textContent = likes;
 
+    divLikes.appendChild(a);
     article.appendChild(divMain);
     divMain.appendChild(divTitle);
     divTitle.appendChild(h2);
