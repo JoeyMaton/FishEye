@@ -82,8 +82,9 @@ function changeOrder() {
     const newMediasOrder = medias.sort((a,b) => {
       return b.likes - a.likes;
     });
-    displayMedia(newMediasOrder);
-    displayMediaModal(newMediasOrder);
+    displayMediaList(newMediasOrder);
+    triggerEventClickOnMedias(newMediasOrder);
+    registerModalEvents(newMediasOrder);
   });
 
   date.addEventListener("click", async () => {
@@ -91,7 +92,9 @@ function changeOrder() {
     const newMediasOrder = medias.sort((a,b) => {
       return a.date.localeCompare(b.date);
     });
-    displayMedia(newMediasOrder);
+    displayMediaList(newMediasOrder);
+    triggerEventClickOnMedias(newMediasOrder);
+    registerModalEvents(newMediasOrder);
   });
 
   title.addEventListener("click", async () => {
@@ -99,12 +102,14 @@ function changeOrder() {
     const newMediasOrder = medias.sort((a,b) => {
       return a.title.localeCompare(b.title);
     });
-    displayMedia(newMediasOrder);
+    displayMediaList(newMediasOrder);
+    triggerEventClickOnMedias(newMediasOrder);
+    registerModalEvents(newMediasOrder);
   });
 
 }
 
-async function displayMedia(medias) {
+async function displayMediaList(medias) {
   const mediaSection = document.querySelector(".media_section");
   mediaSection.innerHTML = "";
   medias.forEach((media) => {
@@ -123,8 +128,8 @@ async function init() {
   section.appendChild(article);
 
   const medias = await getMedia();
-  displayMedia(medias);
-  displayModalInMedia(medias);
+  displayMediaList(medias);
+  registerModalEvents(medias);
   globalLikes(medias, photographerPrice);
   changeOrder();
 }

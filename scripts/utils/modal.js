@@ -2,7 +2,7 @@ let INDEX = 0;
 //DOM element
 const modalbg = document.querySelector(".bground");
 
-function displayMediaModal(media) {
+function displayMediaInModal(media) {
   const mediaSection = document.querySelector(".modal-body");
   mediaSection.innerHTML = "";
   const imgElement = document.createElement("img");
@@ -18,37 +18,45 @@ function displayMediaModal(media) {
   }
 }
 
-function displayModalInMedia(medias) {
+function registerModalEvents(medias) {
+  const actionsArrow = document.querySelector(".actions");
+  actionsArrow.innerHTML = `
+  <div class="prev"><i class="fa-solid fa-chevron-left"></i></div>
+  <div class="next"><i class="fa-solid fa-chevron-right"></i></div>
+  `;
+
   const prevButton = document.querySelector(".prev");
   prevButton.addEventListener("click", () => {
-    if(INDEX < 0) {
-     INDEX = medias[INDEX].length - 1;
-      displayMediaModal(medias[INDEX]);
+    if(INDEX === 0) {
+     INDEX = medias.length - 1;
+     return displayMediaInModal(medias[INDEX]);
     }
     INDEX = INDEX - 1;
-    displayMediaModal(medias[INDEX]);
-    console.log(medias, INDEX);
+     displayMediaInModal(medias[INDEX]);
+    
   });
 
 
   const nextButton = document.querySelector(".next");
   nextButton.addEventListener("click", () => {
-    if(INDEX > medias[INDEX].length) {
+    if(INDEX === medias.length - 1) {
       INDEX = 0;
-       displayMediaModal(medias[INDEX]);
+      return displayMediaInModal(medias[INDEX]);
      }
     INDEX = INDEX + 1;
-    displayMediaModal(medias[INDEX]);
-    console.log(medias, INDEX);
+     displayMediaInModal(medias[INDEX]);
   });
+  triggerEventClickOnMedias(medias);
+}
 
-  medias.forEach((media, mediaIndex) => {
+function triggerEventClickOnMedias(medias) {
+    medias.forEach((media, mediaIndex) => {
     var mediaClick = document.getElementById(media.id);
     
     mediaClick.addEventListener("click", () => {
       INDEX = mediaIndex;
       console.log(INDEX);
-      displayMediaModal(media);
+      displayMediaInModal(media);
 
       launchModal(media, mediaIndex);
     });
