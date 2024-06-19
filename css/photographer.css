@@ -1,3 +1,8 @@
+body {
+  max-width: 1920px;
+  min-width: 340px;
+}
+
 #contact_modal {
   display: none;
 }
@@ -31,7 +36,7 @@
 .photograph-header article {
   display: flex;
   justify-content: space-around;
-  gap: 42rem;
+  gap: 25rem;
   align-items: center;
   flex-direction: row;
 }
@@ -48,7 +53,7 @@
 .media_section {
   display: flex;
   justify-content: center;
-  gap: 48px 250px;
+  gap: 48px 85px;
   margin-top: 100px;
   margin-bottom: 80px;
   flex-wrap: wrap;
@@ -61,7 +66,7 @@
   justify-content: space-between;
 }
 
-.media_section article div div {
+.media_section article div button {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -133,12 +138,19 @@
   cursor: pointer;
 }
 
+#title h2 {
+  font-size: 40px;
+  font-weight: 600;
+}
+
 #title {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 20px;
+  font-size: 40px;
+  font-weight: 600;  
 }
 
 .input-control {
@@ -171,8 +183,6 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 2500px;
-  height: 100%;
 }
 
 #contact_modal {
@@ -324,9 +334,19 @@ form textarea {
   padding: 0.7em 0.5em;
   margin: 0.3em 0;
   cursor: pointer;
+  
+}
+
+.menu li button {
+  width: 100%;
   font-family: Arial, "sans-serif";
   font-weight: 600;
   font-size: 18px;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: white;
 }
 
 .menu #date {
@@ -390,7 +410,7 @@ form textarea {
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 150px;
+  left: 20px;
   top: 50%;
   color: #901c1c;
 }
@@ -409,7 +429,7 @@ form textarea {
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 150px;
+  right: 20px;
   top: 50%;
   color: #901c1c;
 }
@@ -490,11 +510,11 @@ form textarea {
   gap: 10px;
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (max-width: 1440px) {
   .photograph-header article {
     display: flex;
     justify-content: space-around;
-    gap: 16rem;
+    gap: 15rem;
     align-items: center;
     flex-direction: row;
   }
@@ -553,7 +573,7 @@ form textarea {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .photograph-header article {
     display: flex;
     width: 100%;
@@ -564,20 +584,53 @@ form textarea {
   }
 
   .photograph-header article img {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
   }
 
   .photograph-header h2 {
-    font-size: 40px;
+    font-size: 30px;
   }
 
   .photograph-header h3 {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .photograph-header p {
-    font-size: 12px;
+    font-size: 10px;
+  }
+
+  .contact_button {
+    font-size: 14px;
+    width: 100px;
+    height: 60px;
+  }
+
+  #title h2 {
+    font-size: 40px;
+    font-weight: 600;
+  }
+  
+  #title {
+    gap: 20px;
+    font-size: 40px;
+    font-weight: 600;  
+  }
+
+  .dropdown-content {
+    margin-left: 100px;
+  }
+
+  .dropdown-content #sort-title {
+    font-size: 20px;
+  }
+
+  .dropdown-content .dropdown {
+    min-width: 13em;
+  }
+
+  .dropdown-content .dropdown button span {
+    font-size: 18px;
   }
 
   .media_section {
@@ -598,7 +651,7 @@ form textarea {
   }
 
   .media_section article div div {
-    max-width: 175px;
+    max-width: 125px;
   }
 
   .media_section article img {
@@ -666,4 +719,19 @@ form textarea {
   form label {
     font-size: 20px;
   }
+
+  .otherInfo {
+    width: 235px;
+    height: 50px;
+    gap: 35px;
+  }
+
+  .otherInfo .info {
+    font-size: 18px;
+  }
+
+  .otherInfo p {
+    font-size: 18px;
+  }
+   
 }

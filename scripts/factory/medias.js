@@ -24,6 +24,7 @@ function mediaTemplate(media) {
     const span = document.createElement("span");
     const like = document.createElement("i");
     const unLikes = document.createElement("i");
+    const button = document.createElement("button");
 
     if (isVideo) {
       video.setAttribute("width", "500");
@@ -72,10 +73,10 @@ function mediaTemplate(media) {
     article.appendChild(divMain);
     divMain.appendChild(divTitle);
     divTitle.appendChild(h2);
-    divMain.appendChild(divLikes);
-    divLikes.appendChild(span);
-    divLikes.appendChild(unLikes);
-    divLikes.appendChild(like);
+    divMain.appendChild(button);
+    button.appendChild(span);
+    button.appendChild(unLikes);
+    button.appendChild(like);
     
     
     return article;
