@@ -11,7 +11,7 @@
   </head>
   <body>
     <header>
-     <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+     <a href="index.html"><img src="assets/images/logo.png" class="logo"/></a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -25,24 +25,26 @@
             <div class="caret"></div>
           </button>
           <ul class="menu">
-            <li id="popularity" class="active"><button>Popularité</button></li>
-            <li id="date"><button>Date</button></li>
-            <li id="titles"><button>Titre</button></li>
+            <li id="popularity" class="active" aria-label="Filtrer par popularité"><button>Popularité</button></li>
+            <li id="date" aria-label="Filtrer par date"><button>Date</button></li>
+            <li id="titles" aria-label="Filtrer par ordre alphabétique"><button>Titre</button></li>
           </ul>
         </div>
       </div>
       <div class="media_section"></div>
       <div class="otherInfo"></div>
       
-      <div class="bground">
+      <!-- Modal -->
+      <div class="bground" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="content">
           <div class="actions">
-            <div class="prev"><i class="fa-solid fa-chevron-left"></i></div>
-            <div class="next"><i class="fa-solid fa-chevron-right"></i></div>
+            <button class="prev" aria-label="Image précedente" tabindex="0"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="next" aria-label="Image suivante" tabindex="0"><i class="fa-solid fa-chevron-right"></i></button>
           </div>
-          <span class="close"></span>
+          <button class="close" aria-label="Fermer" tabindex="0"></button>
           <div class="modal-body"></div>
     </main>
+
     <div class="bgroundContact">
       <div class="content_contact">
         <div id="contact_modal">
@@ -68,7 +70,7 @@
                 <label>Votre message</label>
                 <textarea id="text" class="text-control"></textarea>
               </div>
-              <button class="contact_button">Envoyer</button>
+              <button class="contact_button_form">Envoyer</button>
             </form>
           </div>
         </div>

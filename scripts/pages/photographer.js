@@ -116,7 +116,6 @@ async function displayMediaList(medias) {
     const mediaModel = mediaTemplate(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
-    console.log(medias);
   });
 }
 

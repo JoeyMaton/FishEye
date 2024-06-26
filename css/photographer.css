@@ -36,9 +36,10 @@ body {
 .photograph-header article {
   display: flex;
   justify-content: space-around;
-  gap: 25rem;
+  gap: 10px;
   align-items: center;
   flex-direction: row;
+  width: 100%;
 }
 
 
@@ -71,6 +72,8 @@ body {
   flex-direction: row;
   gap: 10px;
   max-width: 350px;
+  background-color: transparent;
+  border: none;
 }
 
 .media_section article img {
@@ -87,6 +90,10 @@ body {
   height: 500px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.media_section article div div {
+  max-width: 350px;
 }
 
 .media_section h2 {
@@ -126,6 +133,19 @@ body {
 }
 
 .contact_button {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact_button_form {
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -383,7 +403,8 @@ form textarea {
 .content {
   margin: 0 auto;
   width: 100%;
-  max-width: 2500px;
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 20px);
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   border-radius: 10px;
@@ -413,6 +434,8 @@ form textarea {
   left: 20px;
   top: 50%;
   color: #901c1c;
+  background: transparent;
+  border: none;
 }
 
 .prev:hover {
@@ -432,6 +455,8 @@ form textarea {
   right: 20px;
   top: 50%;
   color: #901c1c;
+  background: transparent;
+  border: none;
 }
 
 .next:hover {
@@ -463,6 +488,10 @@ form textarea {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  border: none;
 }
 
 .close:before,
@@ -514,15 +543,16 @@ form textarea {
   .photograph-header article {
     display: flex;
     justify-content: space-around;
-    gap: 15rem;
+    gap: 10px;
     align-items: center;
     flex-direction: row;
+    width: 100%;
   }
 
   .media_section {
     display: flex;
     justify-content: center;
-    gap: 0px 78px;
+    gap: 50px 78px;
     margin-top: 100px;
     margin-bottom: 80px;
     flex-wrap: wrap;
@@ -542,12 +572,12 @@ form textarea {
 
   .media_section article img {
     width: 100%;
-    height: 61%;
+    height: 380px;
   }
 
   .media_section article video {
     width: 100%;
-    height: 61%;
+    height: 380px;
   }
 
   .modal-body {
@@ -578,9 +608,10 @@ form textarea {
     display: flex;
     width: 100%;
     justify-content: space-around;
-    gap: 1rem;
+    gap: 10px;
     align-items: center;
     flex-direction: row;
+    width: 100%;
   }
 
   .photograph-header article img {
@@ -606,15 +637,22 @@ form textarea {
     height: 60px;
   }
 
+  .text-control {
+    padding-left: 10px;
+  }
+
   #title h2 {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 600;
+    margin: 0;
   }
   
   #title {
-    gap: 20px;
-    font-size: 40px;
-    font-weight: 600;  
+    gap: 0;
+    font-size: 30px;
+    font-weight: 600;
+    flex-direction: column;
+    align-items: baseline;
   }
 
   .dropdown-content {
@@ -636,7 +674,7 @@ form textarea {
   .media_section {
     display: flex;
     justify-content: center;
-    gap: 0px 25px;
+    gap: 30px 25px;
     margin-top: 100px;
     margin-bottom: 80px;
     flex-wrap: wrap;
@@ -656,12 +694,12 @@ form textarea {
 
   .media_section article img {
     width: 100%;
-    height: 61%;
+    height: 240px;
   }
 
   .media_section article video {
     width: 100%;
-    height: 61%;
+    height: 240px;
   }
 
   
@@ -708,10 +746,6 @@ form textarea {
     right: 30px;
   }
 
-  #title {
-    font-size: 30px;
-  }
-
   .modal header h2 {
     font-size: 30px;
   }
@@ -733,5 +767,94 @@ form textarea {
   .otherInfo p {
     font-size: 18px;
   }
-   
+}
+
+@media screen and (max-width: 340px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .photograph-header {
+    width: 100%;
+    height: 200px;
+    margin: 0;
+  }
+
+  .photograph-header article img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .contact_button {
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    bottom: 40px;
+  }
+
+  .dropdown-content {
+    margin-left: 40px;
+  }
+
+  .media_section {
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+    margin-top: 40px;
+  }
+
+  .media_section article {
+    width: 90%;
+  }
+
+  .media_section article div div {
+    max-width: 200px;
+  }
+
+  .otherInfo {
+    left: 0;
+    width: 100%;
+    border-radius: 0;
+    height: 40px;
+  }
+
+  .modal {
+    width: 75%;
+  }
+
+  #title {
+    font-size: 22px;
+    flex-direction: column;
+    gap: 0;
+    align-items: baseline;
+    margin-top: 0;
+  }
+
+  #title h2 {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  form label {
+    font-size: 16px;
+  }
+
+  .modal header img {
+    width: 20px;
+  }
+
+  .text-control {
+    height: 250px;
+    padding-left: 10px;
+  }
+
+  .contact_button_form {
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+  }
 }

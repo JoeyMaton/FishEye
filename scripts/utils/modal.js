@@ -1,4 +1,6 @@
 let INDEX = 0;
+const focusableSelector = 'button, a, input, textarea';
+let focusables = [];
 //DOM element
 const modalbg = document.querySelector(".bground");
 
@@ -7,6 +9,7 @@ function displayMediaInModal(media) {
   mediaSection.innerHTML = "";
   const imgElement = document.createElement("img");
   const videoElement = document.createElement("video");
+
 
   if (media.image) {
     imgElement.src = `assets/media/${media.image}`;
@@ -21,8 +24,8 @@ function displayMediaInModal(media) {
 function registerModalEvents(medias) {
   const actionsArrow = document.querySelector(".actions");
   actionsArrow.innerHTML = `
-  <div class="prev"><i class="fa-solid fa-chevron-left"></i></div>
-  <div class="next"><i class="fa-solid fa-chevron-right"></i></div>
+  <button class="prev"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="next"><i class="fa-solid fa-chevron-right"></i></button>
   `;
 
   const prevButton = document.querySelector(".prev");
@@ -68,6 +71,11 @@ function launchModal(medias, mediaIndex) {
   const modalImage = document.querySelector(".content");
 
   modalbg.style.display = "block";
+  focusables = Array.from(modalbg.querySelectorAll(focusableSelector));
+  modalbg.ariaModal = "true";
+  modalbg.removeAttribute("aria-hidden");
+
+  
 }
 
 // Retrieve data from the “X” button
@@ -77,5 +85,35 @@ closeBtn.addEventListener("click", closeModal);
 // close modal event
 function closeModal() {
   modalbg.style.display = "none";
+  modalbg.ariaHidden = "true";
+  modalbg.removeAttribute("aria-modal");
+  modalbg = null;
 }
+
+  /*const focusInModal = function (e) {
+  e.preventDefault();
+  let index = focusables.findIndex(f => f === modalbg.querySelector(":focus"));
+  if (e.shiftKey === true) {
+    index--;
+  } else {
+    index++;
+  }
+  if (index >= focusables.length) {
+    index = 0;
+  }
+  if (index < 0 ) {
+    index = focusables.length -1;
+  }
+  focusables[index].focus();
+}*/
+
+window.addEventListener('keydown', function (e) {
+  if (e.key === "Escape" || e.key === "Esc") {
+    console.log(e.key)
+    closeModal(e);
+  }
+  /*if (e.key === "Tab" && modalbg !== null) {
+    focusInModal(e);
+  }*/
+})
 

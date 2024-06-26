@@ -18,7 +18,7 @@ function mediaTemplate(media) {
     const divLikes = document.createElement("div");
     const img = document.createElement("img");
     const video = document.createElement("video");
-    const a = document.createElement("a");
+    const aLink = document.createElement("a");
     const source = document.createElement("source");
     const h2 = document.createElement("h2");
     const span = document.createElement("span");
@@ -33,43 +33,51 @@ function mediaTemplate(media) {
       source.setAttribute("src", mediaPath);
       source.setAttribute("type", "video/mp4");
       video.id = id;
-      a.href = "";
-      video.appendChild(a);
       video.appendChild(source);
-      article.appendChild(video);
+      aLink.appendChild(video);
+      article.appendChild(aLink);
     } else {
       img.setAttribute("src", mediaPath);
       img.id = id;
-      a.href = "";
-      article.appendChild(a);
-      article.appendChild(img);
+      aLink.appendChild(img);
+      article.appendChild(aLink);
     }
 
     h2.textContent = title;
     unLikes.className = "fa-regular fa-heart";
     like.className = "fa-solid fa-heart";
+    aLink.setAttribute("tabIndex", 0);
+    aLink.setAttribute("href", "#");
 
-    like.addEventListener("click", () => {
-      const totalLikes = document.querySelector(".totalLikes");
-      unLikes.style.display = "flex";
-      like.style.display = "none";
-      likes -= 1;
-      span.textContent = likes;
-      totalLikes.innerText = parseInt(totalLikes.innerText) - 1;
+    aLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      launchModal(media);
+      displayMediaInModal(media);
+      console.log("clicked");
     });
-    unLikes.addEventListener("click", () => {
+
+    button.addEventListener("click", () => {
       const totalLikes = document.querySelector(".totalLikes");
-      like.style.display = "flex";
-      unLikes.style.display = "none";
-      likes += 1;
+      if (button.classList.contains("liked")) {
+        unLikes.style.display = "flex";
+        like.style.display = "none";
+        likes -= 1;
+        totalLikes.innerText = parseInt(totalLikes.innerText) - 1;
+      } else {
+        like.style.display = "flex";
+        unLikes.style.display = "none";
+        likes += 1;
+        totalLikes.innerText = parseInt(totalLikes.innerText) + 1;
+      }
+
       span.textContent = likes;
-      console.log(totalLikes);
-      totalLikes.innerText = parseInt(totalLikes.innerText) + 1;
+
+      button.classList.toggle("liked");
     });
+   
 
     span.textContent = likes;
 
-    divLikes.appendChild(a);
     article.appendChild(divMain);
     divMain.appendChild(divTitle);
     divTitle.appendChild(h2);

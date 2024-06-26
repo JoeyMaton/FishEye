@@ -20,6 +20,7 @@ function photographerTemplate(data) {
     h3.textContent = city + ", " + country;
     para1.textContent = tagline;
     para2.textContent = price + "€/jour";
+    article.setAttribute("aria-label", name);
 
     article.appendChild(a);
     article.appendChild(img);
