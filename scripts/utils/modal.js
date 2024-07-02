@@ -20,6 +20,23 @@ function displayMediaInModal(media) {
   }
 }
 
+function navigateLeft(medias) {
+  if(INDEX === 0) {
+    INDEX = medias.length - 1;
+    return displayMediaInModal(medias[INDEX]);
+  }
+    INDEX = INDEX - 1;
+    displayMediaInModal(medias[INDEX]);
+}
+
+function navigateRight(medias){
+  if(INDEX === medias.length - 1) {
+    INDEX = 0;
+    return displayMediaInModal(medias[INDEX]);
+  }
+    INDEX = INDEX + 1;
+    displayMediaInModal(medias[INDEX]);
+}
 
 
 function registerModalEvents(medias) {
@@ -32,23 +49,26 @@ function registerModalEvents(medias) {
   const prevButton = document.querySelector(".prev");
 
   prevButton.addEventListener("click", () => {
-  if(INDEX === 0) {
-    INDEX = medias.length - 1;
-    return displayMediaInModal(medias[INDEX]);
-  }
-    INDEX = INDEX - 1;
-    displayMediaInModal(medias[INDEX]);
+    navigateLeft(medias);
   });
 
   const nextButton = document.querySelector(".next");
   nextButton.addEventListener("click", () => {
-    if(INDEX === medias.length - 1) {
-      INDEX = 0;
-      return displayMediaInModal(medias[INDEX]);
+    navigateRight(medias);
+  });
+
+    window.onkeyup = function (e) {
+      if (e.key === "Escape" || e.key === "Esc") {
+        closeModal();
+        closeContactModal();
+      }
+      if (e.key === "ArrowLeft") {
+        prevButton.click()
+      }
+      if (e.key === "ArrowRight") {
+        nextButton.click();
+      }
     }
-      INDEX = INDEX + 1;
-      displayMediaInModal(medias[INDEX]);
-    });
   triggerEventClickOnMedias(medias);
 }
  
@@ -91,18 +111,3 @@ function closeModal() {
   modalbg.ariaHidden = "true";
   modalbg.removeAttribute("aria-modal");
 }
-
-window.addEventListener('keydown', function (e) {
-  console.log(e.key);
-  if (e.key === "Escape" || e.key === "Esc") {
-    closeModal();
-    closeContactModal();
-  }
-  if (e.key === "ArrowLeft") {
-    
-  }
-  if (e.key === "ArrowRight") {
-
-  }
-})
-
