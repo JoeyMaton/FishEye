@@ -1,8 +1,7 @@
 let INDEX = 0;
-const focusableSelector = 'button, a, input, textarea';
-let focusables = [];
 //DOM element
 const modalbg = document.querySelector(".bground");
+
 
 function displayMediaInModal(media) {
   const mediaSection = document.querySelector(".modal-body");
@@ -21,6 +20,8 @@ function displayMediaInModal(media) {
   }
 }
 
+
+
 function registerModalEvents(medias) {
   const actionsArrow = document.querySelector(".actions");
   actionsArrow.innerHTML = `
@@ -29,28 +30,28 @@ function registerModalEvents(medias) {
   `;
 
   const prevButton = document.querySelector(".prev");
-  prevButton.addEventListener("click", () => {
-    if(INDEX === 0) {
-     INDEX = medias.length - 1;
-     return displayMediaInModal(medias[INDEX]);
-    }
-    INDEX = INDEX - 1;
-     displayMediaInModal(medias[INDEX]);
-    
-  });
 
+  prevButton.addEventListener("click", () => {
+  if(INDEX === 0) {
+    INDEX = medias.length - 1;
+    return displayMediaInModal(medias[INDEX]);
+  }
+    INDEX = INDEX - 1;
+    displayMediaInModal(medias[INDEX]);
+  });
 
   const nextButton = document.querySelector(".next");
   nextButton.addEventListener("click", () => {
     if(INDEX === medias.length - 1) {
       INDEX = 0;
       return displayMediaInModal(medias[INDEX]);
-     }
-    INDEX = INDEX + 1;
-     displayMediaInModal(medias[INDEX]);
-  });
+    }
+      INDEX = INDEX + 1;
+      displayMediaInModal(medias[INDEX]);
+    });
   triggerEventClickOnMedias(medias);
 }
+ 
 
 function triggerEventClickOnMedias(medias) {
     medias.forEach((media, mediaIndex) => {
@@ -71,9 +72,10 @@ function launchModal(medias, mediaIndex) {
   const modalImage = document.querySelector(".content");
 
   modalbg.style.display = "block";
-  focusables = Array.from(modalbg.querySelectorAll(focusableSelector));
   modalbg.ariaModal = "true";
   modalbg.removeAttribute("aria-hidden");
+
+  const prevButton = document.querySelector(".prev").focus();
 
   
 }
@@ -84,36 +86,23 @@ closeBtn.addEventListener("click", closeModal);
 
 // close modal event
 function closeModal() {
+  const modalbg = document.querySelector(".bground");
   modalbg.style.display = "none";
   modalbg.ariaHidden = "true";
   modalbg.removeAttribute("aria-modal");
-  modalbg = null;
 }
 
-  /*const focusInModal = function (e) {
-  e.preventDefault();
-  let index = focusables.findIndex(f => f === modalbg.querySelector(":focus"));
-  if (e.shiftKey === true) {
-    index--;
-  } else {
-    index++;
-  }
-  if (index >= focusables.length) {
-    index = 0;
-  }
-  if (index < 0 ) {
-    index = focusables.length -1;
-  }
-  focusables[index].focus();
-}*/
-
 window.addEventListener('keydown', function (e) {
+  console.log(e.key);
   if (e.key === "Escape" || e.key === "Esc") {
-    console.log(e.key)
-    closeModal(e);
+    closeModal();
+    closeContactModal();
   }
-  /*if (e.key === "Tab" && modalbg !== null) {
-    focusInModal(e);
-  }*/
+  if (e.key === "ArrowLeft") {
+    
+  }
+  if (e.key === "ArrowRight") {
+
+  }
 })
 

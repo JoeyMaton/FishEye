@@ -4,9 +4,11 @@ function displayModal() {
     const modal = document.getElementById("contact_modal");
     modalbgContact.style.display = "block";
 	modal.style.display = "block";
+
+    const close = document.querySelector(".closeBtn-contact").focus();
 }
 
-function closeModal() {
+function closeContactModal() {
     const modal = document.getElementById("contact_modal");
     modalbgContact.style.display = "none";
     modal.style.display = "none";

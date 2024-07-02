@@ -158,6 +158,11 @@ body {
   cursor: pointer;
 }
 
+.closeBtn-contact {
+  border: none;
+  background: transparent;
+}
+
 #title h2 {
   font-size: 40px;
   font-weight: 600;
